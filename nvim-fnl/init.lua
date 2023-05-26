@@ -150,7 +150,7 @@ require('lazy').setup({
   { 'tpope/vim-surround' },
   { 'guns/vim-sexp' },
   { 'tpope/vim-sexp-mappings-for-regular-people' },
-  { 'luochen1990/rainbow' },
+  { 'HiPhish/nvim-ts-rainbow2' },
 
   { -- For functional nvim config using fnl-lang
     'Olical/aniseed'

@@ -1,5 +1,6 @@
 (module config.treesitter
-  {require {configs nvim-treesitter.configs}})
+  {require {configs nvim-treesitter.configs
+            : ts-rainbow}})
 
 (def- ensure-installed ["c" "cpp" "clojure" "go" "lua" "python" "rust" "tsx" "typescript" "vimdoc" "vim"])
 
@@ -21,6 +22,10 @@
                          :disable ["python"]}
                 :incremental_selection {:enable true
                                         :keymaps incremental-selection-keymaps}
+                :rainbow {:enable true
+                          :disable {} ;; languages to disable in
+                          :query "rainbow-parens"
+                          :strategy ts-rainbow.strategy.global}
                 :textobjects {:select {:enable true
                                        :lookahead true
                                        :keymaps textobject-keymaps}
