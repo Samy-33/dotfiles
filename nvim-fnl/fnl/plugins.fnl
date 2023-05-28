@@ -74,8 +74,6 @@
    [:HiPhish/nvim-ts-rainbow2]
    ; For linting and formatting (when LSP doesn't work)
    [:jose-elias-alvarez/null-ls.nvim]
-   ; For functional nvim config using fnl-lang
-   [:Olical/aniseed]
    ; For making notes
    [:lervag/wiki.vim]])
 
