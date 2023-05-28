@@ -1,10 +1,10 @@
-(module common.utils
-  {require {nvim aniseed.nvim}})
+(module common.utils)
 
 
-(def config-path (nvim.fn.stdpath "config"))
+(def config-path (vim.fn.stdpath "config"))
+(def data-path (vim.fn.stdpath "data"))
 
 (defn glob [path]
   "Returns all the files matching the path regex"
-  (nvim.fn.glob path true true true))
+  (vim.fn.glob path true true true))
 

@@ -1,7 +1,9 @@
 (module init
   {require {core aniseed.core
-            nvim aniseed.nvim
-            utils common.utils}})
+            utils common.utils
+            : plugins}})
+
+(plugins.load-lazy)
 
 (->> (utils.glob (.. utils.config-path "/lua/config/*.lua"))
      (core.run! (fn [path]

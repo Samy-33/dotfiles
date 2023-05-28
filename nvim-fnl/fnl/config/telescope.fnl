@@ -45,5 +45,9 @@
                 {:desc "[F]ind [D]iagnostics"})
 (vim.keymap.set :n
                 :<leader>fcf
-                (fn [] (builtin.find_files {:search_dirs [utils.config-path]}))
+                (fn [] (builtin.find_files {:cwd utils.config-path}))
                 {:desc "[F]ind [C]onfing [F]iles"})
+(vim.keymap.set :n
+                :<leader>fch
+                builtin.command_history
+                {:desc "[F]ind in [C]ommands [H]istory"})
