@@ -3,7 +3,7 @@
                              utils common.utils
                              ts-builtin telescope.builtin
                              cmp-nvim-lsp cmp_nvim_lsp
-                             mason-lspconfig mason-lspconfig
+                             : mason-lspconfig
                              : lspconfig
                              : neodev}})
 
@@ -39,7 +39,8 @@
    :tsserver {}
    :lua_ls {:Lua {:workspace {:checkThirdParty false}
                   :telemetry {:enable false}}}
-   :fennel_language_server {}})
+   :fennel_language_server {:fennel {:workspace {:library (vim.api.nvim_list_runtime_paths)}
+                                     :diagnostics {:globals [:vim]}}}})
 
 (neodev.setup)
 

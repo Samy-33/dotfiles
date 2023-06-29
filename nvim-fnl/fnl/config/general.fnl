@@ -20,6 +20,4 @@
 (set vim.o.completeopt "menuone,noselect")
 (set vim.o.termguicolors true)
 
-(set vim.g.wiki_root "~/wiki")
-(set vim.g.wiki_tag_scan_num_lines -2)
 (set vim.g.sexp_filetypes (.. vim.g.sexp_filetypes ",fennel"))

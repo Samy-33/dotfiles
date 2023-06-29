@@ -30,6 +30,10 @@
                    :delete {:text "_"}
                    :topdelete {:text "‾"}
                    :changedelete {:text "~"}}}}
+   {1 :folke/tokyonight.nvim
+    :lazy false
+    :priority 500
+    :config (fn [] (vim.cmd.colorscheme :tokyonight-night))}
    ; Theme inspired by Atom
    {1 :navarasu/onedark.nvim
     :priority 1000
@@ -40,7 +44,10 @@
     :opts {:options {:icons_enabled false
                      :theme :onedark
                      :component_separators "|"
-                     :section_separators ""}}}
+                     :section_separators ""}
+           :sections {:lualine_c [{1 :filename
+                                   :file_status true
+                                   :path 1}]}}}
    ; Add indentation guides even on blank lines
    {1 :lukas-reineke/indent-blankline.nvim
     ; See `:help indent_blankline.txt`
@@ -64,18 +71,25 @@
     :build ":TSUpdate"
     :dependencies [:nvim-treesitter/nvim-treesitter-textobjects]}
    ; Clojure dev
-   [:Olical/conjure]
-   [:tpope/vim-dispatch]
-   [:clojure-vim/vim-jack-in]
-   [:radenling/vim-dispatch-neovim]
-   [:tpope/vim-surround]
-   [:guns/vim-sexp]
-   [:tpope/vim-sexp-mappings-for-regular-people]
-   [:HiPhish/nvim-ts-rainbow2]
+   :Olical/conjure
+   :PaterJason/cmp-conjure
+   :tpope/vim-dispatch
+   :clojure-vim/vim-jack-in
+   :radenling/vim-dispatch-neovim
+   :tpope/vim-surround
+   :guns/vim-sexp
+   :tpope/vim-sexp-mappings-for-regular-people
+   :HiPhish/nvim-ts-rainbow2
    ; For linting and formatting (when LSP doesn't work)
-   [:jose-elias-alvarez/null-ls.nvim]
+   :jose-elias-alvarez/null-ls.nvim
+   ; For functional nvim config using fnl-lang
+   ; This is already added in init.lua but somehow,
+   ; if not added here, the syntax highlighting stops working.
+   ; so keeping it here till I figure out why this is happening. (probably never?)
+   :Olical/aniseed
    ; For making notes
-   [:lervag/wiki.vim]])
+   :lervag/wiki.vim
+   :justinmk/vim-dirvish])
 
 (defn- lazy-setup
   []
