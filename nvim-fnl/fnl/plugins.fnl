@@ -3,10 +3,7 @@
 (def- lazypath (.. utils.data-path :/lazy/lazy.nvim))
 
 (def- plugins-to-install
-  [; Git related plugins
-   :tpope/vim-fugitive
-   :tpope/vim-rhubarb
-   ; Detect tabstop and shiftwidth automatically
+  [; Detect tabstop and shiftwidth automatically
    :tpope/vim-sleuth
    ; NOTE: This is where your plugins related to LSP can be installed.
    ; The configuration is done below. Search for lspconfig to find it below.
@@ -22,6 +19,8 @@
                    :saadparwaiz1/cmp_luasnip]}
    ; Useful plugin to show you pending keybinds.
    {1 :folke/which-key.nvim :opts {}}
+   ; Git related plugins
+   :tpope/vim-fugitive
    ; Adds git releated signs to the gutter, as well as utilities for managing changes
    {1 :lewis6991/gitsigns.nvim
     ; See `:help gitsigns.txt`

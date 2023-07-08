@@ -11,6 +11,9 @@
   [_ bufnr]
   (let [nmap (fn [keys func desc]
                (vim.keymap.set :n keys func
+                               {:buffer bufnr :desc (.. "LSP: " desc)}))
+        nvxmap (fn [keys func desc]
+               (vim.keymap.set [:n :v :x] keys func
                                {:buffer bufnr :desc (.. "LSP: " desc)}))]
     (nmap :<leader>rn vim.lsp.buf.rename "[R]e[n]ame")
     (nmap :<leader>ca vim.lsp.buf.code_action "[C]ode [A]ction")
@@ -32,10 +35,10 @@
           (fn []
             (core.println (vim.inspect (vim.lsp.buf.list_workspace_folders))))
           "[W]orkspace [L]ist folders")
-    (nmap :<leader>fmt vim.lsp.buf.format "[F]or[m]a[t] the current buffer")))
+    (nvxmap :<leader>fmt vim.lsp.buf.format "[F]or[m]a[t] the current buffer or range")))
 
 (def- servers
-  {:clojure_lsp {}
+  {:clojure_lsp {:paths-ignore-regex "conjure-log-*.cljc"}
    :tsserver {}
    :lua_ls {:Lua {:workspace {:checkThirdParty false}
                   :telemetry {:enable false}}}

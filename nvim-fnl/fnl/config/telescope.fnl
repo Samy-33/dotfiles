@@ -51,3 +51,7 @@
                 :<leader>fch
                 builtin.command_history
                 {:desc "[F]ind in [C]ommands [H]istory"})
+(vim.keymap.set :n
+                :<leader>fm
+                builtin.marks
+                {:desc "[F]ind in [M]arks"})
