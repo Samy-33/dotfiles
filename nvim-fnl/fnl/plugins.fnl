@@ -3,7 +3,8 @@
 (def- lazypath (.. utils.data-path :/lazy/lazy.nvim))
 
 (def- plugins-to-install
-  [; Detect tabstop and shiftwidth automatically
+  [:tpope/vim-repeat
+   ; Detect tabstop and shiftwidth automatically
    :tpope/vim-sleuth
    ; NOTE: This is where your plugins related to LSP can be installed.
    ; The configuration is done below. Search for lspconfig to find it below.
