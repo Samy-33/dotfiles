@@ -19,5 +19,6 @@
 (set vim.o.timeoutlen 300)
 (set vim.o.completeopt "menuone,noselect")
 (set vim.o.termguicolors true)
+(set vim.o.cursorline true)
 
 (set vim.g.sexp_filetypes (.. vim.g.sexp_filetypes ",fennel"))

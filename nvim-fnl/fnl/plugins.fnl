@@ -79,9 +79,7 @@
    :tpope/vim-surround
    :guns/vim-sexp
    :tpope/vim-sexp-mappings-for-regular-people
-   :HiPhish/nvim-ts-rainbow2
-   ; For linting and formatting (when LSP doesn't work)
-   :jose-elias-alvarez/null-ls.nvim
+   :HiPhish/rainbow-delimiters.nvim
    ; For functional nvim config using fnl-lang
    ; This is already added in init.lua but somehow,
    ; if not added here, the syntax highlighting stops working.
@@ -89,7 +87,12 @@
    :Olical/aniseed
    ; For making notes
    :lervag/wiki.vim
-   :justinmk/vim-dirvish])
+   ; Exploring filesystem pragmatically
+   :justinmk/vim-dirvish
+   ; autopairs
+   {1 :windwp/nvim-autopairs
+    :event :InsertEnter
+    :opts {:enable_check_bracket_line false}}])
 
 (defn- lazy-setup
   []

@@ -1,6 +1,5 @@
 (module config.treesitter
-  {require {configs nvim-treesitter.configs
-            : ts-rainbow}})
+  {require {configs nvim-treesitter.configs}})
 
 (def- ensure-installed ["c" "cpp" "clojure" "go" "lua" "python" "rust" "tsx" "typescript" "vimdoc" "vim"])
 
@@ -22,14 +21,12 @@
                          :disable ["python"]}
                 :incremental_selection {:enable true
                                         :keymaps incremental-selection-keymaps}
-                :rainbow {:enable true
-                          :disable {} ;; languages to disable in
-                          :query "rainbow-parens"
-                          :strategy ts-rainbow.strategy.global}
                 :textobjects {:select {:enable true
+                                       :disable [:clojure]
                                        :lookahead true
                                        :keymaps textobject-keymaps}
                               :move {:enable true
+                                     :disable [:clojure]
                                      :set_jumps true ;; whether to set jumps in the jumplist
                                      :goto_next_start {"]m" "@function.outer"
                                                        "]]" "@class.outer"}
@@ -40,5 +37,6 @@
                                      :goto_previous_end {"[M" "@function.outer"
                                                          "[]" "@class.outer"}}
                               :swap {:enable true
+                                     :disable [:clojure]
                                      :swap_next {:<leader>a "@parameter.inner"}
                                      :swap_previous {:<leader>A "@parameter.inner"}}}})
