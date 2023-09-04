@@ -18,11 +18,11 @@
     (nmap :<leader>rn vim.lsp.buf.rename "[R]e[n]ame")
     (nmap :<leader>ca vim.lsp.buf.code_action "[C]ode [A]ction")
     (nmap :gd vim.lsp.buf.definition "[G]oto [D]efinition")
-    (nmap :gr ts-builtin.lsp_references "[G]oto [R]eferences")
+    (nmap :gr (fn [] (ts-builtin.lsp_references {:fname_width 60})) "[G]oto [R]eferences")
     (nmap :gI vim.lsp.buf.implementation "[G]oto [I]mplementation")
     (nmap :<leader>D vim.lsp.buf.type_definition "Type [D]efinition")
     (nmap :<leader>ds ts-builtin.lsp_document_symbols "[D]ocument [S]ymbols")
-    (nmap :<leader>ws ts-builtin.lsp_dynamic_workspace_symbols
+    (nmap :<leader>ws (fn [] (ts-builtin.lsp_dynamic_workspace_symbols {:fname_width 60}))
           "[W]orkspace [S]ymbols")
     (nmap :K vim.lsp.buf.hover "Hover Documentation")
     (nmap :<C-k> vim.lsp.buf.signature_help "Signature Documentation")
