@@ -41,9 +41,7 @@
   {:clojure_lsp {:paths-ignore-regex "conjure-log-*.cljc"}
    :tsserver {}
    :lua_ls {:Lua {:workspace {:checkThirdParty false}
-                  :telemetry {:enable false}}}
-   :fennel_language_server {:fennel {:workspace {:library (vim.api.nvim_list_runtime_paths)}
-                                     :diagnostics {:globals [:vim]}}}})
+                  :telemetry {:enable false}}}})
 
 (neodev.setup)
 
