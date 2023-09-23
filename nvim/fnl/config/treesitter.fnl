@@ -1,15 +1,15 @@
-(module config.treesitter
-  {require {configs nvim-treesitter.configs}})
+(local {: autoload} (require :nfnl.module))
+(local configs (autoload :nvim-treesitter.configs))
 
-(def- ensure-installed ["c" "cpp" "clojure" "go" "lua" "python" "rust" "tsx" "typescript" "vimdoc" "vim"])
+(local ensure-installed [:c :cpp :clojure :lua :tsx :typescript :vimdoc :vim :fennel])
 
-(def- textobject-keymaps {:aa "@parameter.outer"
+(local textobject-keymaps {:aa "@parameter.outer"
                           :ia "@parameter.inner"
                           :af "@function.outer"
                           :if "@function.inner"
                           :ac "@class.outer"
                           :ic "@class.inner"})
-(def- incremental-selection-keymaps {:init_selection "<c-space>"
+(local incremental-selection-keymaps {:init_selection "<c-space>"
                                      :node_incremental "<c-space>"
                                      :scope_incremental "<c-s>"
                                      :node_decremental "<M-space>"})
@@ -18,11 +18,11 @@
                 :auto_install false ;; Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
                 :highlight { :enable true }
                 :indent {:enable false
-                         :disable ["python", "typescript", "javascript"]}
+                         :disable [:python :typescript :javascript]}
                 :incremental_selection {:enable true
                                         :keymaps incremental-selection-keymaps}
                 :textobjects {:select {:enable true
-                                       :disable [:clojure]
+                                       :disable [:clojure :fennel]
                                        :lookahead true
                                        :keymaps textobject-keymaps}
                               :move {:enable true

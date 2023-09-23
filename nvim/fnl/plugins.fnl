@@ -1,9 +1,17 @@
-(module plugins {require {utils common.utils}})
+(local {: autoload} (require :nfnl.module))
+(local fs (autoload :nfnl.fs))
 
-(def- lazypath (.. utils.data-path :/lazy/lazy.nvim))
+(local config-path (vim.fn.stdpath :config))
+(local data-path (vim.fn.stdpath :data))
+(local lazy-path (.. data-path :/lazy/lazy.nvim))
 
-(def- plugins-to-install
-  [:tpope/vim-repeat
+(local lazy-installed?
+     (vim.loop.fs_stat lazy-path))
+
+(local plugins-to-install
+  [{1 :Olical/nfnl
+    :ft :fennel }
+   :tpope/vim-repeat
    ; Detect tabstop and shiftwidth automatically
    :tpope/vim-sleuth
    ; NOTE: This is where your plugins related to LSP can be installed.
@@ -84,7 +92,7 @@
    ; This is already added in init.lua but somehow,
    ; if not added here, the syntax highlighting stops working.
    ; so keeping it here till I figure out why this is happening. (probably never?)
-   :Olical/aniseed
+   ; :Olical/aniseed
    ; For making notes
    :lervag/wiki.vim
    ; Exploring filesystem pragmatically
@@ -97,19 +105,16 @@
    {1 :nmac427/guess-indent.nvim
     :config (fn [] ((. (require :guess-indent) :setup)))}])
 
-(defn- lazy-setup
-  []
-  ((. (require :lazy) :setup) plugins-to-install))
+(fn setup []
+ (when (not lazy-installed?)
+    (vim.fn.system [:git
+		    :clone
+		    "--filter=blob:none"
+		    "https://github.com/folke/lazy.nvim.git"
+		    :--branch=stable
+		    lazy-path]))
+ (vim.opt.rtp:prepend lazy-path)
+ (let [lazy (autoload :lazy)]
+   (lazy.setup plugins-to-install)))
 
-(defn load-lazy
-  []
-  (do
-    (if (not (vim.loop.fs_stat lazypath))
-        (vim.fn.system [:git
-                        :clone
-                        "--filter=blob:none"
-                        "https://github.com/folke/lazy.nvim.git"
-                        :--branch=stable
-                        lazypath]))
-    (vim.opt.rtp:prepend lazypath)
-    (lazy-setup)))
+{: setup}

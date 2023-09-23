@@ -1,28 +1,32 @@
+-- Set <,> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ','
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.cmd('filetype indent plugin on')
+vim.g.maplocalleader = ','
 
-require('plugins')
+local nfnl_path = vim.fn.stdpath 'data' .. '/lazy/nfnl'
 
-require('telescope')
-require('nerdtree')
-require('autocomplete')
-require('autopairs')
-require('keymaps')
+if not vim.loop.fs_stat(nfnl_path) then
+  print("Could not find nfnl, cloning new copy to", nfnl_path)
+  vim.fn.system({'git', 'clone', 'https://github.com/Olical/nfnl', nfnl_path})
+  vim.cmd('helptags ' .. nfnl_path .. '/docs')
+end
 
--- Theme Config
-vim.g.airline_theme = 'one'
-vim.g.one_allow_italics = 1
-vim.g.colors_name = 'tokyonight'
-vim.o.background = 'dark'
+vim.opt.rtp:prepend(nfnl_path)
 
--- Autopep8 for python
-vim.cmd('au FileType python setlocal formatprg=autopep8\\ -')
+require('nfnl').setup()
+require('core').setup()
 
--- Language specific commands
-vim.cmd('au FileType yaml setlocal shiftwidth=2 softtabstop=2 expandtab')
-vim.cmd('au FileType lua setlocal shiftwidth=2 softtabstop=2 expandtab')
-vim.cmd('au FileType clj setlocal shiftwidth=2 softtabstop=2 expandtab')
-vim.cmd('au FileType javascript setlocal shiftwidth=2 softtabstop=2 expandtab')
-vim.cmd('au FileType python setlocal shiftwidth=4 softtabstop=4 expandtab')
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

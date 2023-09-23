@@ -1,53 +1,32 @@
-return require('packer').startup(function(use) 
-  use 'wbthomason/packer.nvim'
-
-  -- Neo Git
-  use 'TimUntersberger/neogit'
-
-  -- Autocomplete
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'neovim/nvim-lspconfig', 'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',
-    }
-  }
-  use 'hrsh7th/cmp-vsnip';
-  use 'hrsh7th/vim-vsnip';
-  use 'williamboman/nvim-lsp-installer';
-
-  -- File Explorer
-  use 'preservim/nerdtree';
-
-  -- Commenting
-  use 'tpope/vim-commentary';
-
-  -- Color scheme
-  use 'ghifarit53/tokyonight-vim';
-
-  -- TreeSitter
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-
-  -- Telescope
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {
-      'BurntSushi/ripgrep', 'nvim-lua/plenary.nvim'
-    }
-  }
-
-  -- Markdown
-  use {
-    'iamcco/markdown-preview.nvim',
-    run	 = function() vim.fn['mkdp#util#install']() end,
-  }
-
-  -- Formatter
-  use 'sbdchd/neoformat';
-
-  -- AutoClosing of the brackets/quotes
-  use 'windwp/nvim-autopairs';
-end)
+-- [nfnl] Compiled from fnl/plugins.fnl by https://github.com/Olical/nfnl, do not edit.
+local _local_1_ = require("nfnl.module")
+local autoload = _local_1_["autoload"]
+local fs = autoload("nfnl.fs")
+local config_path = vim.fn.stdpath("config")
+local data_path = vim.fn.stdpath("data")
+local lazy_path = (data_path .. "/lazy/lazy.nvim")
+local lazy_installed_3f = vim.loop.fs_stat(lazy_path)
+local plugins_to_install
+local function _2_()
+  return vim.cmd.colorscheme("tokyonight-night")
+end
+local function _3_()
+  return vim.cmd.colorscheme("onedark")
+end
+local function _4_()
+  return (vim.fn.executable("make") == 1)
+end
+local function _5_()
+  return (require("guess-indent")).setup()
+end
+plugins_to_install = {{"Olical/nfnl", ft = "fennel"}, "tpope/vim-repeat", "tpope/vim-sleuth", {"neovim/nvim-lspconfig", dependencies = {{"williamboman/mason.nvim", config = true}, "williamboman/mason-lspconfig.nvim", {"j-hui/fidget.nvim", opts = {}}, "folke/neodev.nvim"}}, {"hrsh7th/nvim-cmp", dependencies = {"hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip"}}, {"folke/which-key.nvim", opts = {}}, "tpope/vim-fugitive", {"lewis6991/gitsigns.nvim", opts = {signs = {add = {text = "+"}, change = {text = "~"}, delete = {text = "_"}, topdelete = {text = "\226\128\190"}, changedelete = {text = "~"}}}}, {"folke/tokyonight.nvim", priority = 500, config = _2_, lazy = false}, {"navarasu/onedark.nvim", priority = 1000, config = _3_}, {"nvim-lualine/lualine.nvim", opts = {options = {theme = "onedark", component_separators = "|", section_separators = "", icons_enabled = false}, sections = {lualine_c = {{"filename", file_status = true, path = 1}}}}}, {"lukas-reineke/indent-blankline.nvim", opts = {char = "\226\148\138", show_trailing_blankline_indent = false}}, {"numToStr/Comment.nvim", opts = {}}, {"nvim-telescope/telescope.nvim", version = "*", dependencies = {"nvim-lua/plenary.nvim"}}, {"nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = _4_}, {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", dependencies = {"nvim-treesitter/nvim-treesitter-textobjects"}}, "Olical/conjure", "PaterJason/cmp-conjure", "tpope/vim-dispatch", "clojure-vim/vim-jack-in", "radenling/vim-dispatch-neovim", "tpope/vim-surround", "guns/vim-sexp", "tpope/vim-sexp-mappings-for-regular-people", "HiPhish/rainbow-delimiters.nvim", "lervag/wiki.vim", "justinmk/vim-dirvish", {"windwp/nvim-autopairs", event = "InsertEnter", opts = {enable_check_bracket_line = false}}, {"nmac427/guess-indent.nvim", config = _5_}}
+local function setup()
+  if not lazy_installed_3f then
+    vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazy_path})
+  else
+  end
+  do end (vim.opt.rtp):prepend(lazy_path)
+  local lazy = autoload("lazy")
+  return lazy.setup(plugins_to_install)
+end
+return {setup = setup}
