@@ -5,13 +5,13 @@
 
 (set vim.o.mouse "")
 
-(set vim.o.clipboard "unnamedplus")
+(set vim.o.clipboard :unnamedplus)
 
 (set vim.o.breakindent true)
 (set vim.o.undofile true)
 (set vim.o.ignorecase true)
 (set vim.o.smartcase true)
-(set vim.wo.signcolumn "yes")
+(set vim.wo.signcolumn :yes)
 (set vim.o.updatetime 250)
 (set vim.o.timeout true)
 (set vim.o.timeoutlen 300)
@@ -19,4 +19,12 @@
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
 
-(set vim.g.sexp_filetypes (.. vim.g.sexp_filetypes ",fennel"))
+;; Highlight on Yank
+(fn setup-yank-highlight []
+  (let [yank-augroup (vim.api.nvim_create_augroup :YankHighlight {:clear true})]
+    (vim.api.nvim_create_autocmd :TextYankPost
+                                 {:callback #(vim.highlight.on_yank)
+                                  :group yank-augroup
+                                  :pattern "*"})))
+
+(setup-yank-highlight)

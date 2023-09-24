@@ -15,5 +15,11 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
 vim.o.cursorline = true
-vim.g.sexp_filetypes = (vim.g.sexp_filetypes .. ",fennel")
-return nil
+local function setup_yank_highlight()
+  local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
+  local function _1_()
+    return vim.highlight.on_yank()
+  end
+  return vim.api.nvim_create_autocmd("TextYankPost", {callback = _1_, group = yank_augroup, pattern = "*"})
+end
+return setup_yank_highlight()

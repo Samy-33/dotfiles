@@ -43,7 +43,7 @@ local function on_attach(_, bufnr)
   nmap("<leader>wl", _6_, "[W]orkspace [L]ist folders")
   return nvxmap("<leader>fmt", vim.lsp.buf.format, "[F]or[m]a[t] the current buffer or range")
 end
-local servers = {clojure_lsp = {["paths-ignore-regex"] = "conjure-log-*.cljc"}, tsserver = {}, lua_ls = {Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}}}
+local servers = {clojure_lsp = {["paths-ignore-regex"] = "conjure-log-*.cljc"}, tsserver = {}, lua_ls = {Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}}, fennel_language_server = {fennel = {diagnostics = {globals = {"vim"}}, workspace = {library = vim.api.nvim_list_runtime_paths()}}}}
 neodev.setup()
 local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 mason_lspconfig.setup({ensure_installed = nfnl_c.keys(servers)})
