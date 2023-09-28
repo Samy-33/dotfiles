@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/config/treesitter.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/user/config/treesitter.fnl by https://github.com/Olical/nfnl, do not edit.
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local configs = autoload("nvim-treesitter.configs")

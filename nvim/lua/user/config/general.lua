@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/config/general.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/user/config/general.fnl by https://github.com/Olical/nfnl, do not edit.
 vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true

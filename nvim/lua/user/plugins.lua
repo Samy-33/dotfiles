@@ -1,7 +1,7 @@
--- [nfnl] Compiled from fnl/plugins.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/user/plugins.fnl by https://github.com/Olical/nfnl, do not edit.
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
-local utils = autoload("common.utils")
+local utils = autoload("user.common.utils")
 local lazy_path = (utils["data-path"] .. "/lazy/lazy.nvim")
 local lazy_installed_3f = vim.loop.fs_stat(lazy_path)
 local plugins_to_install
@@ -16,7 +16,7 @@ local function _4_()
 end
 local function _5_()
   local paredit = require("nvim-paredit")
-  return paredit.setup()
+  return paredit.setup({indent = {enabled = true}})
 end
 local function _6_()
   local fnl_paredit = require("nvim-paredit-fennel")

@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/config/oliv.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/user/config/oliv.fnl by https://github.com/Olical/nfnl, do not edit.
 local current_working_dir = vim.fn.getcwd()
 local oliv_dir_substr = "/Documents/oliv/"
 if (string.match(current_working_dir, oliv_dir_substr) == oliv_dir_substr) then

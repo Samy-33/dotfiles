@@ -1,4 +1,4 @@
--- [nfnl] Compiled from fnl/config/conjure.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/user/config/conjure.fnl by https://github.com/Olical/nfnl, do not edit.
 local function _1_(evt)
   return vim.diagnostic.disable(evt.buf)
 end

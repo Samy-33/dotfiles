@@ -1,5 +1,5 @@
 (local {: autoload} (require :nfnl.module))
-(local utils (autoload :common.utils))
+(local utils (autoload :user.common.utils))
 
 (local lazy-path (.. utils.data-path :/lazy/lazy.nvim))
 
@@ -82,7 +82,7 @@
         {1 :julienvincent/nvim-paredit
          :config (fn []
                    (let [paredit (require :nvim-paredit)]
-                     (paredit.setup)))}
+                     (paredit.setup {:indent {:enabled true}})))}
         {1 :julienvincent/nvim-paredit-fennel
          :dependencies [:julienvincent/nvim-paredit]
          :ft [:fennel]

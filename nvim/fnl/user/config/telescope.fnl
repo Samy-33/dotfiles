@@ -2,7 +2,8 @@
 (local telescope (autoload :telescope))
 (local builtin (autoload :telescope.builtin))
 (local themes (autoload :telescope.themes))
-(local utils (autoload :common.utils))
+
+(local utils (autoload :user.common.utils))
 
 (telescope.setup {:defaults {:mappings {:i {:<C-u> false :<C-d> false}}}})
 

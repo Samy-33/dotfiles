@@ -1,11 +1,11 @@
--- [nfnl] Compiled from fnl/config/telescope.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] Compiled from fnl/user/config/telescope.fnl by https://github.com/Olical/nfnl, do not edit.
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local telescope = autoload("telescope")
 local builtin = autoload("telescope.builtin")
 local themes = autoload("telescope.themes")
-local utils = autoload("common.utils")
-telescope.setup({defaults = {mappings = {i = {["<C-u>"] = false, ["<C-d>"] = false}}}})
+local utils = autoload("user.common.utils")
+telescope.setup({defaults = {mappings = {i = {["<C-d>"] = false, ["<C-u>"] = false}}}})
 telescope.load_extension("fzf")
 vim.keymap.set("n", "<leader>?", builtin.oldfiles, {desc = "[?] Find recently opened files"})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {desc = "[F]ind open [B]uffers"})
