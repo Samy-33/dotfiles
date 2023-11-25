@@ -22,4 +22,5 @@ local function setup_yank_highlight()
   end
   return vim.api.nvim_create_autocmd("TextYankPost", {callback = _1_, group = yank_augroup, pattern = "*"})
 end
-return setup_yank_highlight()
+setup_yank_highlight()
+return {}

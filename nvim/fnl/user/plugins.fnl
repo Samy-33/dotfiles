@@ -53,7 +53,8 @@
         ; Add indentation guides even on blank lines
         {1 :lukas-reineke/indent-blankline.nvim
          ; See `:help indent_blankline.txt`
-         :opts {:char "┊" :show_trailing_blankline_indent false}}
+         :opts {}
+         :main :ibl}
         ; "gc" to comment visual regions/lines
         {1 :numToStr/Comment.nvim :opts {}}
         ; Fuzzy Finder (files, lsp, etc)

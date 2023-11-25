@@ -3,6 +3,7 @@
                              utils common.utils
                              ts-builtin telescope.builtin
                              cmp-nvim-lsp cmp_nvim_lsp
+                             : fidget
                              : mason-lspconfig
                              : lspconfig
                              : neodev}})
@@ -43,6 +44,13 @@
    :lua_ls {:Lua {:workspace {:checkThirdParty false}
                   :telemetry {:enable false}}}})
 
+(fidget.setup {:logger {:level vim.log.levels.DEBUG}})
+
+(set lspconfig.util.default_config
+     (vim.tbl_extend :force
+                     lspconfig.util.default_config
+                     {:workDoneToken "work-done-token"}))
+
 (neodev.setup)
 
 (def- capabilities
@@ -54,4 +62,7 @@
                                    ((. (. lspconfig server-name) :setup) {: capabilities
                                                                           :on_attach on-attach
                                                                           :settings (. servers
-                                                                                       server-name)}))])
+                                                                                       server-name)
+                                                                          :before_init (fn [params config]
+                                                                                         (set params.workDoneToken "work-done-token2"))}))])
+

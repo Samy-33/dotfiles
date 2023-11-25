@@ -50,6 +50,7 @@
                                    :path 1}]}}}
    ; Add indentation guides even on blank lines
    {1 :lukas-reineke/indent-blankline.nvim
+    :main :ibl
     ; See `:help indent_blankline.txt`
     :opts {:char "┊" :show_trailing_blankline_indent false}}
    ; "gc" to comment visual regions/lines

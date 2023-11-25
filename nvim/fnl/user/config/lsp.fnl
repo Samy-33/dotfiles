@@ -5,6 +5,7 @@
 (local mason-lspconfig (autoload :mason-lspconfig))
 (local lspconfig (autoload :lspconfig))
 (local neodev (autoload :neodev))
+(local fidget (autoload :fidget))
 
 (fn on-attach [_ bufnr]
   (let [nmap (fn [keys func desc]
@@ -46,6 +47,8 @@
         :fennel_language_server {:fennel {:diagnostics {:globals [:vim]}
                                           :workspace {:library (vim.api.nvim_list_runtime_paths)}}}})
 
+(fidget.setup {})
+
 (neodev.setup)
 
 (local capabilities
@@ -54,7 +57,12 @@
 (mason-lspconfig.setup {:ensure_installed (nfnl-c.keys servers)})
 
 (mason-lspconfig.setup_handlers [(fn [server-name]
-                                   ((. (. lspconfig server-name) :setup) {: capabilities
-                                                                          :on_attach on-attach
-                                                                          :settings (. servers
-                                                                                       server-name)}))])
+                                   ((. (. lspconfig server-name) :setup) 
+                                      {: capabilities
+                                       :on_attach on-attach
+                                       :settings (. servers server-name)
+
+                                       :before_init
+                                       (fn [params _]
+                                         (set params.workDoneToken 
+                                              "work-done-token"))}))])

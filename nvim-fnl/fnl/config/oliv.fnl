@@ -19,9 +19,9 @@
             (vim.api.nvim_create_autocmd :BufEnter
                                          {:callback (fn [] (vim.api.nvim_command "ConjureClientState clj"))
                                           :group oliv-augroup
-                                          :pattern "*.clj"})
+                                          :pattern "*/clj/*"})
             (vim.api.nvim_create_autocmd :BufEnter
                                          {:callback (fn [] (vim.api.nvim_command "ConjureClientState cljs"))
                                           :group oliv-augroup
-                                          :pattern "*.cljs"}))))
+                                          :pattern "*/cljs/*"}))))
 

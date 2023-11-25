@@ -18,7 +18,7 @@
                 :auto_install false ;; Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
                 :highlight { :enable true }
                 :indent {:enable false
-                         :disable ["python", "typescript", "javascript"]}
+                         :disable ["python" "typescript" "javascript"]}
                 :incremental_selection {:enable true
                                         :keymaps incremental-selection-keymaps}
                 :textobjects {:select {:enable true

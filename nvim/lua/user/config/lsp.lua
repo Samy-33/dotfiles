@@ -7,6 +7,7 @@ local cmp_nvim_lsp = autoload("cmp_nvim_lsp")
 local mason_lspconfig = autoload("mason-lspconfig")
 local lspconfig = autoload("lspconfig")
 local neodev = autoload("neodev")
+local fidget = autoload("fidget")
 local function on_attach(_, bufnr)
   local nmap
   local function _2_(keys, func, desc)
@@ -44,10 +45,15 @@ local function on_attach(_, bufnr)
   return nvxmap("<leader>fmt", vim.lsp.buf.format, "[F]or[m]a[t] the current buffer or range")
 end
 local servers = {clojure_lsp = {["paths-ignore-regex"] = "conjure-log-*.cljc"}, tsserver = {}, lua_ls = {Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}}}, fennel_language_server = {fennel = {diagnostics = {globals = {"vim"}}, workspace = {library = vim.api.nvim_list_runtime_paths()}}}}
+fidget.setup({})
 neodev.setup()
 local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 mason_lspconfig.setup({ensure_installed = nfnl_c.keys(servers)})
 local function _7_(server_name)
-  return lspconfig[server_name].setup({capabilities = capabilities, on_attach = on_attach, settings = servers[server_name]})
+  local function _8_(params, _)
+    params.workDoneToken = "work-done-token"
+    return nil
+  end
+  return lspconfig[server_name].setup({capabilities = capabilities, on_attach = on_attach, settings = servers[server_name], before_init = _8_})
 end
 return mason_lspconfig.setup_handlers({_7_})

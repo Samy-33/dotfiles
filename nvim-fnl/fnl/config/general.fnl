@@ -22,3 +22,6 @@
 (set vim.o.cursorline true)
 
 (set vim.g.sexp_filetypes (.. vim.g.sexp_filetypes ",fennel"))
+
+
+;; (vim.lsp.set_log_level :DEBUG)

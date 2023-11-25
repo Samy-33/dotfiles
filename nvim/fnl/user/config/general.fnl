@@ -19,6 +19,8 @@
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
 
+;; (vim.lsp.set_log_level :DEBUG)
+
 ;; Highlight on Yank
 (fn setup-yank-highlight []
   (let [yank-augroup (vim.api.nvim_create_augroup :YankHighlight {:clear true})]
@@ -28,3 +30,5 @@
                                   :pattern "*"})))
 
 (setup-yank-highlight)
+
+{}
