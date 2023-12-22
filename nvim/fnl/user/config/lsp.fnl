@@ -5,7 +5,6 @@
 (local mason-lspconfig (autoload :mason-lspconfig))
 (local lspconfig (autoload :lspconfig))
 (local neodev (autoload :neodev))
-(local fidget (autoload :fidget))
 
 (fn on-attach [_ bufnr]
   (let [nmap (fn [keys func desc]
@@ -46,8 +45,6 @@
                        :telemetry {:enable false}}}
         :fennel_language_server {:fennel {:diagnostics {:globals [:vim]}
                                           :workspace {:library (vim.api.nvim_list_runtime_paths)}}}})
-
-(fidget.setup {})
 
 (neodev.setup)
 

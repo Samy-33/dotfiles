@@ -15,6 +15,7 @@ local function setup()
   require("user.config.telescope")
   require("user.config.rainbow")
   require("user.config.wiki")
+  require("user.config.neorg")
   require("user.config.oliv")
   return nil
 end

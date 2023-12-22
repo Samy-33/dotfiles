@@ -10,7 +10,7 @@
                                                  :<C-f> (cmp.mapping.scroll_docs 4)
                                                  :<C-Space> (cmp.mapping.complete {})
                                                  :<CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
-                                                                             :select true})
+                                                                             :select false})
                                                  :<Tab> (cmp.mapping (fn [fallback]
                                                                        (if (cmp.visible)
                                                                            (cmp.select_next_item)

@@ -26,7 +26,7 @@
         {1 :folke/which-key.nvim :opts {}}
         ; Git related plugins
         :tpope/vim-fugitive
-        ; Adds git releated signs to the gutter, as well as utilities for managing changes
+        ; Adds git related signs to the gutter, as well as utilities for managing changes
         {1 :lewis6991/gitsigns.nvim
          ; See `:help gitsigns.txt`
          :opts {:signs {:add {:text "+"}
@@ -38,22 +38,19 @@
          :lazy false
          :priority 500
          :config (fn [] (vim.cmd.colorscheme :tokyonight-night))}
-        ; Theme inspired by Atom
-        {1 :navarasu/onedark.nvim
-         :priority 1000
-         :config (fn [] (vim.cmd.colorscheme :onedark))}
         ; Set lualine as statusline
         {1 :nvim-lualine/lualine.nvim
          ; See `:help lualine.txt`
          :opts {:options {:icons_enabled false
-                          :theme :onedark
+                          :theme :tokyonight
                           :component_separators "|"
                           :section_separators ""}
                 :sections {:lualine_c [{1 :filename :file_status true :path 1}]}}}
         ; Add indentation guides even on blank lines
         {1 :lukas-reineke/indent-blankline.nvim
          ; See `:help indent_blankline.txt`
-         :opts {}
+         :opts {:scope {:show_start false
+                        :show_end false}}
          :main :ibl}
         ; "gc" to comment visual regions/lines
         {1 :numToStr/Comment.nvim :opts {}}
@@ -97,6 +94,8 @@
         :HiPhish/rainbow-delimiters.nvim
         ; For making notes
         :lervag/wiki.vim
+        {1 :nvim-neorg/neorg
+         :run ":Neorg sync-parsers"}
         ; Exploring filesystem pragmatically
         :justinmk/vim-dirvish
         ; autopairs
