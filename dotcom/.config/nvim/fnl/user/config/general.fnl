@@ -19,7 +19,7 @@
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
 
-;; (vim.lsp.set_log_level :DEBUG)
+; (vim.lsp.set_log_level :DEBUG)
 
 ;; Highlight on Yank
 (fn setup-yank-highlight []
