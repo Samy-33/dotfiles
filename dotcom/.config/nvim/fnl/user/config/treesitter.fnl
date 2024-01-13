@@ -9,7 +9,8 @@
                          :typescript
                          :vimdoc
                          :vim
-                         :fennel])
+                         :fennel
+                         :norg])
 
 (local textobject-keymaps {:aa "@parameter.outer"
                            :ia "@parameter.inner"
