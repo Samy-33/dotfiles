@@ -23,4 +23,9 @@ local function setup_yank_highlight()
   return vim.api.nvim_create_autocmd("TextYankPost", {callback = _1_, group = yank_augroup, pattern = "*"})
 end
 setup_yank_highlight()
+local function _2_()
+  vim.bo.filetype = "clojure"
+  return nil
+end
+vim.api.nvim_create_autocmd("BufEnter", {callback = _2_, pattern = "*.cljd"})
 return {}

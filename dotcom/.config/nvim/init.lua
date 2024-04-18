@@ -6,7 +6,7 @@ vim.g.maplocalleader = ','
 
 local nfnl_path = vim.fn.stdpath 'data' .. '/lazy/nfnl'
 
-if not vim.loop.fs_stat(nfnl_path) then
+if not vim.uv.fs_stat(nfnl_path) then
   print("Could not find nfnl, cloning new copy to", nfnl_path)
   vim.fn.system({'git', 'clone', 'https://github.com/Olical/nfnl', nfnl_path})
   vim.cmd('helptags ' .. nfnl_path .. '/docs')

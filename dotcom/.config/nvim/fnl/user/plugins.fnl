@@ -101,8 +101,15 @@
         :HiPhish/rainbow-delimiters.nvim
         ; For making notes
         :lervag/wiki.vim
+
+        {1 :vhyrro/luarocks.nvim
+         :priority 1000
+         :config true}
+        {1 :Pocco81/true-zen.nvim
+         :config true}
         {1 :nvim-neorg/neorg
-         :run ":Neorg sync-parsers"}
+         :dependencies [:luarocks.nvim]}
+
         ; Exploring filesystem pragmatically
         :justinmk/vim-dirvish
         ; autopairs
@@ -111,7 +118,12 @@
          :opts {:enable_check_bracket_line false}}
         {1 :nmac427/guess-indent.nvim
          :config (fn []
-                   ((. (require :guess-indent) :setup)))}])
+                   ((. (require :guess-indent) :setup)))}
+
+        {1 :aspeddro/pandoc.nvim
+         :config (fn []
+		   (let [pandoc (require :pandoc)]
+                   (pandoc.setup)))}])
 
 (fn setup []
   (when (not lazy-installed?)

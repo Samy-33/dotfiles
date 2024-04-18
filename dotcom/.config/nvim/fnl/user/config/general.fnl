@@ -31,4 +31,9 @@
 
 (setup-yank-highlight)
 
+(vim.api.nvim_create_autocmd :BufEnter
+                             {:callback (fn []
+                               (set vim.bo.filetype :clojure))
+                              :pattern :*.cljd})
+
 {}

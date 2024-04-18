@@ -5,6 +5,7 @@
                          :cpp
                          :clojure
                          :lua
+                         :norg
                          :tsx
                          :typescript
                          :vimdoc

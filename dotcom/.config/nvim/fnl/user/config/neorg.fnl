@@ -14,6 +14,7 @@
                                         :personal "~/neorg/personal"}
 
                                        :index "index.norg"}}
-                :core.concealer {}})
+                :core.concealer {}
+                :core.export {}})
 
 (neorg.setup {:load modules})
