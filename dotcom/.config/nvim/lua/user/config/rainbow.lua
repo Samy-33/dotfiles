@@ -2,5 +2,5 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local rainbow_delimiters = autoload("rainbow-delimiters")
-vim.g.rainbow_delimiters = {strategy = {[""] = rainbow_delimiters.strategy["local"]}, query = {[""] = "rainbow-delimiters"}}
+vim.g.rainbow_delimiters = {strategy = {[""] = rainbow_delimiters.strategy.global}, query = {[""] = "rainbow-delimiters"}}
 return nil
