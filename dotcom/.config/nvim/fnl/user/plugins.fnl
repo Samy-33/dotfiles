@@ -64,7 +64,9 @@
         ; Fuzzy Finder (files, lsp, etc)
         {1 :nvim-telescope/telescope.nvim
          :version "*"
-         :dependencies {1 :nvim-lua/plenary.nvim}}
+         :dependencies [:nvim-lua/plenary.nvim
+                        {1 :nvim-telescope/telescope-live-grep-args.nvim
+                         :version "^1.0.0"}]}
         ; Fuzzy Finder Algorithm which requires local dependencies to be built.
         ; Only load if `make` is available. Make sure you have the system
         ; requirements installed.
