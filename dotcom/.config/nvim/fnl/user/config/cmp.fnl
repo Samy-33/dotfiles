@@ -1,8 +1,5 @@
 (local {: autoload} (require :nfnl.module))
 (local cmp (autoload :cmp))
-(local luasnip (autoload :luasnip))
-
-(luasnip.setup)
 
 (cmp.setup {:snippet {:expand (fn [args]
                                 (luasnip.lsp_expand (. args :body)))}
@@ -14,14 +11,10 @@
                                                  :<Tab> (cmp.mapping (fn [fallback]
                                                                        (if (cmp.visible)
                                                                            (cmp.select_next_item)
-                                                                           (luasnip.expand_or_jumpable)
-                                                                           (luasnip.expand_or_jump)
                                                                            (fallback))))
                                                  :<S-Tab> (cmp.mapping (fn [fallback]
                                                                          (if (cmp.visible)
                                                                              (cmp.select_prev_item)
-                                                                             (luasnip.jumpable -1)
-                                                                             (luasnip.jump -1)
                                                                              (fallback))))}
                                                 [:i :s])
             :sources [{:name :conjure}

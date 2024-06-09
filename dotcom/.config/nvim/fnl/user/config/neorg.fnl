@@ -11,7 +11,8 @@
                                      "<cmd>Neorg journal today<cr>"))}}
                 :core.dirman {:config {:workspaces
                                        {:oliv "~/neorg/oliv"
-                                        :personal "~/neorg/personal"}
+                                        :personal "~/neorg/personal"
+                                        :ticombo "~/neorg/ticombo"}
 
                                        :index "index.norg"}}
                 :core.concealer {}

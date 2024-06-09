@@ -18,6 +18,7 @@
 (set vim.o.completeopt "menuone,noselect")
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
+(set vim.o.backupcopy "yes")
 
 ; (vim.lsp.set_log_level :DEBUG)
 

@@ -26,9 +26,7 @@
                         :folke/neodev.nvim]}
         ; Autocompletion   
         {1 :hrsh7th/nvim-cmp
-         :dependencies [:hrsh7th/cmp-nvim-lsp
-                        :L3MON4D3/LuaSnip
-                        :saadparwaiz1/cmp_luasnip]}
+         :dependencies [:hrsh7th/cmp-nvim-lsp]}
         ; Useful plugin to show you pending keybinds.
         {1 :folke/which-key.nvim :opts {}}
         ; Git related plugins
