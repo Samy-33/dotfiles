@@ -12,6 +12,7 @@
         :tpope/vim-sleuth
         ; NOTE: This is where your plugins related to LSP can be installed.
         ; The configuration is done below. Search for lspconfig to find it below.
+        ; :nvim-java/nvim-java
         {1 :neovim/nvim-lspconfig
          :dependencies [{1 :williamboman/mason.nvim :config true}
                         :williamboman/mason-lspconfig.nvim

@@ -5,6 +5,7 @@
 (local mason-lspconfig (autoload :mason-lspconfig))
 (local lspconfig (autoload :lspconfig))
 (local neodev (autoload :neodev))
+; (local java (autoload :java))
 
 (fn on-attach [_ bufnr]
   (let [nmap (fn [keys func desc]
@@ -16,8 +17,7 @@
     (nmap :<leader>rn vim.lsp.buf.rename "[R]e[n]ame")
     (nmap :<leader>ca vim.lsp.buf.code_action "[C]ode [A]ction")
     (nmap :gd vim.lsp.buf.definition "[G]oto [D]efinition")
-    (nmap :gr (fn [] (ts-builtin.lsp_references {:fname_width 60
-                                                 :layout_strategy :center}))
+    (nmap :gr (fn [] (ts-builtin.lsp_references {:fname_width 60}))
           "[G]oto [R]eferences")
     (nmap :gI vim.lsp.buf.implementation "[G]oto [I]mplementation")
     (nmap :<leader>D vim.lsp.buf.type_definition "Type [D]efinition")
@@ -42,10 +42,12 @@
 (local servers
        {:clojure_lsp {:paths-ignore-regex :conjure-log-*.cljc}
         :tsserver {}
+        ; :jdtls {}
         :lua_ls {:Lua {:workspace {:checkThirdParty false}
                        :telemetry {:enable false}}}
         :fennel_language_server {:fennel {:diagnostics {:globals [:vim]}
                                           :workspace {:library (vim.api.nvim_list_runtime_paths)}}}})
+; (java.setup)
 
 (neodev.setup)
 
@@ -55,7 +57,7 @@
 (mason-lspconfig.setup {:ensure_installed (nfnl-c.keys servers)})
 
 (mason-lspconfig.setup_handlers [(fn [server-name]
-                                   ((. (. lspconfig server-name) :setup) 
+                                   ((. (. lspconfig server-name) :setup)
                                       {: capabilities
                                        :on_attach on-attach
                                        :settings (. servers server-name)

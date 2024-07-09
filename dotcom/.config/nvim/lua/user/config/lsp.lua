@@ -22,7 +22,7 @@ local function on_attach(_, bufnr)
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
   local function _4_()
-    return ts_builtin.lsp_references({fname_width = 60, layout_strategy = "center"})
+    return ts_builtin.lsp_references({fname_width = 60})
   end
   nmap("gr", _4_, "[G]oto [R]eferences")
   nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
