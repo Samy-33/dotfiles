@@ -2,12 +2,16 @@
 local _local_1_ = require("nfnl.module")
 local autoload = _local_1_["autoload"]
 local cmp = autoload("cmp")
+local luasnip = autoload("luasnip")
+luasnip.setup()
 local function _2_(args)
   return luasnip.lsp_expand(args.body)
 end
 local function _3_(fallback)
   if cmp.visible() then
     return cmp.select_next_item()
+  elseif luasnip.expand_or_jumpable() then
+    return luasnip.expand_or_jump()
   else
     return fallback()
   end
@@ -15,6 +19,8 @@ end
 local function _5_(fallback)
   if cmp.visible() then
     return cmp.select_prev_item()
+  elseif luasnip.jumpable(-1) then
+    return luasnip.jump(-1)
   else
     return fallback()
   end

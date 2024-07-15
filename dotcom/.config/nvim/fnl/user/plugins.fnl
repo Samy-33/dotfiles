@@ -13,6 +13,8 @@
         ; NOTE: This is where your plugins related to LSP can be installed.
         ; The configuration is done below. Search for lspconfig to find it below.
         ; :nvim-java/nvim-java
+        {1 :L3MON4D3/LuaSnip
+         :version :v2.3.0}
         {1 :neovim/nvim-lspconfig
          :dependencies [{1 :williamboman/mason.nvim :config true}
                         :williamboman/mason-lspconfig.nvim
@@ -123,8 +125,10 @@
 
         {1 :aspeddro/pandoc.nvim
          :config (fn []
-		   (let [pandoc (require :pandoc)]
-                   (pandoc.setup)))}])
+                   (let [pandoc (require :pandoc)]
+                     (pandoc.setup)))}
+         {1 "https://git.sr.ht/~p00f/cphelper.nvim"
+          :dependencies [:nvim-lua/plenary.nvim]}])
 
 (fn setup []
   (when (not lazy-installed?)

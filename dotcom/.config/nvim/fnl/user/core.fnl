@@ -16,6 +16,8 @@
   (require :user.config.wiki)
   (require :user.config.neorg)
   (require :user.config.oliv)
+  (require :user.config.project)
+  (require :user.config.cphelper)
   nil)
 
 {: setup}

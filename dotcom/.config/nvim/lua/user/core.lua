@@ -17,6 +17,8 @@ local function setup()
   require("user.config.wiki")
   require("user.config.neorg")
   require("user.config.oliv")
+  require("user.config.project")
+  require("user.config.cphelper")
   return nil
 end
 return {setup = setup}
