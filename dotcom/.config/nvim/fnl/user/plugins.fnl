@@ -18,14 +18,15 @@
         {1 :neovim/nvim-lspconfig
          :dependencies [{1 :williamboman/mason.nvim :config true}
                         :williamboman/mason-lspconfig.nvim
-                        {1 :echasnovski/mini.nvim
-                         :version false
-                         :config (fn [] 
-                                   (let [mnotify (require :mini.notify)]
-                                     (mnotify.setup {:lsp_progress {:enable true
-                                                                    :duration_last 2000}})))}
-                        ; {1 :j-hui/fidget.nvim
-                        ;  :opts {}}
+                        ; {1 :echasnovski/mini.nvim
+                        ;  :version false
+                        ;  :config (fn []
+                        ;            (let [mnotify (require :mini.notify)]
+                        ;              (mnotify.setup {:lsp_progress {:enable true
+                        ;                                             :duration_last 2000}})))}
+                        {1 :j-hui/fidget.nvim
+                         :opts {}
+                         :branch :main}
                         :folke/neodev.nvim]}
         ; Autocompletion   
         {1 :hrsh7th/nvim-cmp
