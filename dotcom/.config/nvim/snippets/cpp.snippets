@@ -113,3 +113,145 @@ snippet union-find
 			return true;
 		}
 	};
+
+snippet eratosthenes
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/FastEratosthenes.h
+	int const LIM = 1e6;
+	bitset<LIM> is_prime;
+
+	vi eratosthenes() {
+	  int const S = (int)round(sqrt(LIM)), R = LIM / 2;
+	  vi pr = {2}, sieve(S+1); pr.reserve(int(LIM/log(LIM)*1.1));
+	  vector<pii> cp;
+	  for (int i = 3; i <= S; i += 2) if (!sieve[i]) {
+	    cp.push_back({i, i * i / 2});
+	    for (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;
+	  }
+	  for (int L = 1; L <= R; L += S) {
+	    vector<bool> block(S, false);
+	    for (auto &[p, idx] : cp)
+	      for (int i=idx; i < S+L; idx = (i+=p)) block[i-L] = 1;
+	    for(int i = 0; i <= min(S, R - L); i++)
+	      if (!block[i]) pr.push_back((L + i) * 2 + 1);
+	  }
+	  for (int i : pr) is_prime[i] = 1;
+	  return pr;
+	}
+
+snippet modinverse
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/ModInverse.h
+	const ll mod = 1'000'000'007, LIM = 200'000;
+	ll* inv = new ll[LIM] - 1;
+
+	void calc_inv() {
+	  inv[1] = 1;
+	  for (int i = 2; i < LIM; i++)
+	    inv[i] = mod - (mod / i) * inv[mod % i] % mod;
+	}
+
+snippet modmul
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/ModMulLL.h
+	typedef unsigned long long ull;
+
+	ull modmul(ull a, ull b, ull M) {
+		ll ret = a * b - M * ull(1.L / M * a * b);
+		return ret + M * (ret < 0) - M * (ret >= (ll)M);
+	}
+
+	ull modpow(ull b, ull e, ull mod) {
+		ull ans = 1;
+		for (; e; b = modmul(b, b, mod), e /= 2)
+			if (e & 1) ans = modmul(ans, b, mod);
+		return ans;
+	}
+
+snippet mod
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/ModularArithmetic.h
+	ll euclid(ll a, ll b, ll &x, ll &y) {
+		if (!b) return x = 1, y = 0, a;
+		ll d = euclid(b, a % b, y, x);
+		return y -= a/b * x, d;
+	}
+
+	const ll mod = 1e9 + 7; // change to something else
+	struct Mod {
+		ll x;
+		Mod(ll xx) : x(xx) {}
+		Mod operator+(Mod b) { return Mod((x + b.x) % mod); }
+		Mod operator-(Mod b) { return Mod((x - b.x + mod) % mod); }
+		Mod operator*(Mod b) { return Mod((x * b.x) % mod); }
+		Mod operator/(Mod b) { return *this * invert(b); }
+		Mod invert(Mod a) {
+			ll x, y, g = euclid(a.x, mod, x, y);
+			assert(g == 1); return Mod((x + mod) % mod);
+		}
+		Mod operator^(ll e) {
+			if (!e) return Mod(1);
+			Mod r = *this ^ (e / 2); r = r * r;
+			return e&1 ? *this * r : r;
+		}
+	};
+
+snippet kmp
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/strings/KMP.h
+	vi pi(const string& s) {
+		vi p(s.size());
+		for(int i = 1; i < s.size(); i++) {
+			int g = p[i-1];
+			while (g && s[i] != s[g]) g = p[g-1];
+			p[i] = g + (s[i] == s[g]);
+		}
+		return p;
+	}
+
+	vi match(const string& s, const string& pat) {
+		vi p = pi(pat + '\0' + s), res;
+		for(int i = p.size() - s.size(); i < p.size(); i++)
+			if (p[i] == pat.size()) res.push_back(i - 2 * pat.size());
+		return res;
+	}
+
+snippet suffix-array
+	// Taken from
+	// https://github.com/kth-competitive-programming/kactl/blob/main/content/strings/SuffixArray.h
+	struct SuffixArray {
+	  vi sa, lcp;
+	  SuffixArray(string &s, int lim = 256) { // or basic_string<int>
+	    int n = s.size() + 1, k = 0, a, b;
+	    vi x(s.begin(), s.end() + 1), y(n), ws(max(n, lim)), rank(n);
+	    sa = lcp = y, iota(sa.begin(), sa.end(), 0);
+	    for (int j = 0, p = 0; p < n; j = max(1, j * 2), lim = p) {
+	      p = j, iota(y.begin(), y.end(), n - j);
+	      for (int i = 0; i < n; i++) {
+		if (sa[i] >= j)
+		  y[p++] = sa[i] - j;
+	      }
+	      fill(ws.begin(), ws.end(), 0);
+	      for (int i = 0; i < n; i++) {
+		ws[x[i]]++;
+	      }
+	      for (int i = 1; i < lim; i++) {
+		ws[i] += ws[i - 1];
+	      }
+	      for (int i = 1; i < lim; i++) {
+		ws[i] += ws[i - 1];
+		for (int i = n; i--;)
+		  sa[--ws[x[y[i]]]] = y[i];
+	      }
+
+	      swap(x, y), p = 1, x[sa[0]] = 0;
+	      for (int i = 1; i < n; i++) {
+		a = sa[i - 1], b = sa[i];
+		x[b] = (y[a] == y[b] && y[a + j] == y[b + j]) ? p - 1 : p++;
+	      }
+	    }
+
+	    for (int i = 1; i < n; i++) {
+	      rank[sa[i]] = i;
+	    }
+
+	    for (int i = 0, j; i < n - 1; lcp[rank[i++]] = k)
+	      for (k &&k--, j = sa[rank[i] - 1]; s[i + k] == s[j + k]; k++)
+		;
+	  }
+	};
