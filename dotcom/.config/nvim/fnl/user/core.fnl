@@ -18,6 +18,8 @@
   (require :user.config.oliv)
   (require :user.config.project)
   (require :user.config.cphelper)
+  (require :user.config.autopairs)
+  (require :user.config.snips)
   nil)
 
 {: setup}

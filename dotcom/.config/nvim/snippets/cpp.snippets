@@ -1,0 +1,115 @@
+snippet empty
+	#if __APPLE__
+	#include <iostream>
+	#include <vector>
+	#else
+	#include <bits/stdc++.h>
+	#endif
+
+	using namespace std;
+	typedef long long ll;
+	typedef long double ld;
+	typedef pair<int, int> pii;
+	typedef vector<int> vi;
+	typedef vector<pair<int, int>> vpi;
+
+	int main() {
+	  ios::sync_with_stdio(false);
+	  int t; cin>>t;
+	  while(t--) {
+	    $0
+	  }
+	  return 0;
+	}
+
+snippet fori
+	for(int $1 = ${2:0}; $1 < ${3:n}; $1++) {
+	  $0
+	}
+
+snippet frri
+	for(int $1 = ${2:n}; $1 >= ${3:0}; $1--) {
+	  $0
+	}
+
+snippet sort
+	sort($1.begin(), $1.end());$0
+
+snippet sortcmp
+	sort($1.begin(), $1.end(), [&](auto const &a, auto const &b) {$0});
+
+snippet fwtree
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/data-structures/FenwickTree.h
+	struct FT {
+		vector<ll> s;
+		FT(int n) : s(n) {}
+
+		void update(int pos, ll dif) { // a[pos] += dif
+			for (; pos < s.size(); pos |= pos + 1) s[pos] += dif;
+		}
+
+		ll query(int pos) { // sum of values in [0, pos)
+			ll res = 0;
+			for (; pos > 0; pos &= pos - 1) res += s[pos-1];
+			return res;
+		}
+
+		int lower_bound(ll sum) {// min pos st sum of [0, pos] >= sum
+			// Returns n if no sum is >= sum, or -1 if empty sum is.
+			if (sum <= 0) return -1;
+			int pos = 0;
+			for (int pw = 1 << 25; pw; pw >>= 1) {
+				if (pos + pw <= s.size() && s[pos + pw-1] < sum)
+					pos += pw, sum -= s[pos-1];
+			}
+			return pos;
+		}
+	};$0
+
+snippet segt
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/data-structures/SegmentTree.h
+	struct SegTree {
+		typedef int T;
+		static constexpr T unit = INT_MIN;
+
+		T f(T a, T b) { return max(a, b); } // (any associative fn)
+
+		vector<T> s; int n;
+
+		SegTree(int n = 0, T def = unit) : s(2*n, def), n(n) {}
+
+		void update(int pos, T val) {
+			for (s[pos += n] = val; pos /= 2;)
+				s[pos] = f(s[pos * 2], s[pos * 2 + 1]);
+		}
+
+		T query(int b, int e) { // query [b, e)
+			T ra = unit, rb = unit;
+			for (b += n, e += n; b < e; b /= 2, e /= 2) {
+				if (b % 2) ra = f(ra, s[b++]);
+				if (e % 2) rb = f(s[--e], rb);
+			}
+			return f(ra, rb);
+		}
+	};
+
+snippet union-find
+	// Taken from https://github.com/kth-competitive-programming/kactl/blob/main/content/data-structures/UnionFind.h
+	struct UF {
+		vi e;
+		UF(int n) : e(n, -1) {}
+
+		bool sameSet(int a, int b) { return find(a) == find(b); }
+
+		int size(int x) { return -e[find(x)]; }
+
+		int find(int x) { return e[x] < 0 ? x : e[x] = find(e[x]); }
+
+		bool join(int a, int b) {
+			a = find(a), b = find(b);
+			if (a == b) return false;
+			if (e[a] > e[b]) swap(a, b);
+			e[a] += e[b]; e[b] = a;
+			return true;
+		}
+	};
