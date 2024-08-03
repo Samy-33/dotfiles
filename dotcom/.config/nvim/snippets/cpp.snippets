@@ -2,16 +2,33 @@ snippet empty
 	#if __APPLE__
 	#include <iostream>
 	#include <vector>
-	#else
-	#include <bits/stdc++.h>
-	#endif
 
 	using namespace std;
+	#else
+	#include <bits/stdc++.h>
+	#include <ext/pb_ds/assoc_container.hpp>
+	#include <ext/pb_ds/tree_policy.hpp>
+ 
+	using namespace __gnu_pbds;
+	using namespace std;
+
+	typedef tree<pair<int, int>, null_type, less<pair<int, int>>, rb_tree_tag, tree_order_statistics_node_update> ordered_multiset;
+	#endif
+
 	typedef long long ll;
 	typedef long double ld;
 	typedef pair<int, int> pii;
 	typedef vector<int> vi;
 	typedef vector<pair<int, int>> vpi;
+
+	template<typename T>
+	istream &operator>>(istream &is, vector<T> &v) {
+	  for(int i = 0; i < v.size(); i++) {
+	    is>>v[i];
+	  }
+
+	  return is;
+	}
 
 	int main() {
 	  ios::sync_with_stdio(false);
@@ -255,3 +272,46 @@ snippet suffix-array
 		;
 	  }
 	};
+
+snippet bridges
+	int n; // number of nodes
+	vector<vector<int>> adj; // adjacency list of graph
+
+	vector<bool> visited;
+	vector<int> tin, low;
+	set<pii> bridges;
+	int timer;
+
+	void on_bridge_found(int v,int to) {} // some function to process the found bridge
+
+	void dfs(int v, int p = -1) {
+	    visited[v] = true;
+	    tin[v] = low[v] = timer++;
+	    bool parent_skipped = false;
+	    for (int to : adj[v]) {
+		if (to == p && !parent_skipped) {
+		    parent_skipped = true;
+		    continue;
+		}
+		if (visited[to]) {
+		    low[v] = min(low[v], tin[to]);
+		} else {
+		    dfs(to, v);
+		    low[v] = min(low[v], low[to]);
+		    if (low[to] > tin[v])
+			on_bridge_found(v, to);
+		}
+	    }
+	}
+
+	// Taken from https://cp-algorithms.com/graph/bridge-searching.html
+	void find_bridges() {
+	    timer = 0;
+	    visited.assign(n, false);
+	    tin.assign(n, -1);
+	    low.assign(n, -1);
+	    for (int i = 0; i < n; ++i) {
+		if (!visited[i])
+		    dfs(i);
+	    }
+	}
