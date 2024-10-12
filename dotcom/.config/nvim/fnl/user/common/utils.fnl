@@ -4,6 +4,4 @@
 (fn get-color-column []
   (. vim.o :colorcolumn))
 
-{: config-path
- : data-path
- : get-color-column}
+{: config-path : data-path : get-color-column}

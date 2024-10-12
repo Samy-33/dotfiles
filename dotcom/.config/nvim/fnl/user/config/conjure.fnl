@@ -1,4 +1,4 @@
-(tset vim.g :conjure#client_on_load false)
+(tset vim.g "conjure#client_on_load" false)
 ; Disable diagnostic on Conjure log buffers
 (vim.api.nvim_create_autocmd [:BufNewFile]
                              {:group (vim.api.nvim_create_augroup :conjure-config

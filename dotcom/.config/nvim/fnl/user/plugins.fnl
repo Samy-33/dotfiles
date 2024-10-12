@@ -13,8 +13,7 @@
         ; NOTE: This is where your plugins related to LSP can be installed.
         ; The configuration is done below. Search for lspconfig to find it below.
         ; :nvim-java/nvim-java
-        {1 :L3MON4D3/LuaSnip
-         :version :v2.3.0}
+        {1 :L3MON4D3/LuaSnip :version :v2.3.0}
         {1 :neovim/nvim-lspconfig
          :dependencies [{1 :williamboman/mason.nvim :config true}
                         :williamboman/mason-lspconfig.nvim
@@ -24,13 +23,11 @@
                         ;            (let [mnotify (require :mini.notify)]
                         ;              (mnotify.setup {:lsp_progress {:enable true
                         ;                                             :duration_last 2000}})))}
-                        {1 :j-hui/fidget.nvim
-                         :opts {}
-                         :branch :main}
+                        {1 :j-hui/fidget.nvim :opts {} :branch :main}
                         :folke/neodev.nvim]}
+        {1 :nvimtools/none-ls.nvim}
         ; Autocompletion   
-        {1 :hrsh7th/nvim-cmp
-         :dependencies [:hrsh7th/cmp-nvim-lsp]}
+        {1 :hrsh7th/nvim-cmp :dependencies [:hrsh7th/cmp-nvim-lsp]}
         {1 :saadparwaiz1/cmp_luasnip}
         ; Useful plugin to show you pending keybinds.
         {1 :folke/which-key.nvim :opts {}}
@@ -59,8 +56,7 @@
         ; Add indentation guides even on blank lines
         {1 :lukas-reineke/indent-blankline.nvim
          ; See `:help indent_blankline.txt`
-         :opts {:scope {:show_start false
-                        :show_end false}}
+         :opts {:scope {:show_start false :show_end false}}
          :main :ibl}
         ; "gc" to comment visual regions/lines
         {1 :numToStr/Comment.nvim :opts {}}
@@ -69,7 +65,7 @@
          :version "*"
          :dependencies [:nvim-lua/plenary.nvim
                         {1 :nvim-telescope/telescope-live-grep-args.nvim
-                         :version "^1.0.0"}]}
+                         :version :^1.0.0}]}
         ; Fuzzy Finder Algorithm which requires local dependencies to be built.
         ; Only load if `make` is available. Make sure you have the system
         ; requirements installed.
@@ -106,15 +102,9 @@
         :HiPhish/rainbow-delimiters.nvim
         ; For making notes
         :lervag/wiki.vim
-
-        {1 :vhyrro/luarocks.nvim
-         :priority 1000
-         :config true}
-        {1 :Pocco81/true-zen.nvim
-         :config true}
-        {1 :nvim-neorg/neorg
-         :dependencies [:luarocks.nvim]}
-
+        {1 :vhyrro/luarocks.nvim :priority 1000 :config true}
+        {1 :Pocco81/true-zen.nvim :config true}
+        {1 :nvim-neorg/neorg :dependencies [:luarocks.nvim]}
         ; Exploring filesystem pragmatically
         :justinmk/vim-dirvish
         ; autopairs
@@ -124,13 +114,12 @@
         {1 :nmac427/guess-indent.nvim
          :config (fn []
                    ((. (require :guess-indent) :setup)))}
-
         {1 :aspeddro/pandoc.nvim
          :config (fn []
                    (let [pandoc (require :pandoc)]
                      (pandoc.setup)))}
-         {1 "https://git.sr.ht/~p00f/cphelper.nvim"
-          :dependencies [:nvim-lua/plenary.nvim]}])
+        {1 "https://git.sr.ht/~p00f/cphelper.nvim"
+         :dependencies [:nvim-lua/plenary.nvim]}])
 
 (fn setup []
   (when (not lazy-installed?)

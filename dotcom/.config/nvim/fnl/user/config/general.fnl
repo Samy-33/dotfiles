@@ -18,7 +18,7 @@
 (set vim.o.completeopt "menuone,noselect")
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
-(set vim.o.backupcopy "yes")
+(set vim.o.backupcopy :yes)
 
 ; (vim.lsp.set_log_level :DEBUG)
 
@@ -33,8 +33,9 @@
 (setup-yank-highlight)
 
 (vim.api.nvim_create_autocmd :BufEnter
-                             {:callback (fn []
-                               (set vim.bo.filetype :clojure))
+                             {:callback (fn [] (set vim.bo.filetype :clojure))
                               :pattern :*.cljd})
+
+(vim.filetype.add {:extension {:ebnf :ebnf}})
 
 {}

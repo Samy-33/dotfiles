@@ -41,12 +41,13 @@
 
 (local servers
        {:clojure_lsp {:paths-ignore-regex :conjure-log-*.cljc}
-        :tsserver {}
+        :ts_ls {}
         ; :jdtls {}
         :lua_ls {:Lua {:workspace {:checkThirdParty false}
                        :telemetry {:enable false}}}
         :fennel_language_server {:fennel {:diagnostics {:globals [:vim]}
                                           :workspace {:library (vim.api.nvim_list_runtime_paths)}}}})
+
 ; (java.setup)
 
 (neodev.setup)
@@ -57,12 +58,11 @@
 (mason-lspconfig.setup {:ensure_installed (nfnl-c.keys servers)})
 
 (mason-lspconfig.setup_handlers [(fn [server-name]
-                                   ((. (. lspconfig server-name) :setup)
-                                      {: capabilities
-                                       :on_attach on-attach
-                                       :settings (. servers server-name)
-
-                                       :before_init
-                                       (fn [params _]
-                                         (set params.workDoneToken 
-                                              "work-done-token"))}))])
+                                   ((. (. lspconfig server-name) :setup) {: capabilities
+                                                                          :on_attach on-attach
+                                                                          :settings (. servers
+                                                                                       server-name)
+                                                                          :before_init (fn [params
+                                                                                            _]
+                                                                                         (set params.workDoneToken
+                                                                                              :work-done-token))}))])

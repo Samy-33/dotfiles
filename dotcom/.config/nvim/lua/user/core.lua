@@ -6,9 +6,9 @@ local function setup()
   plugins.setup()
   require("user.config.general")
   require("user.config.diagnostics")
-  require("user.config.keymaps")
   require("user.config.treesitter")
   require("user.config.lsp")
+  require("user.config.nonels")
   require("user.config.paredit")
   require("user.config.conjure")
   require("user.config.cmp")
@@ -21,6 +21,7 @@ local function setup()
   require("user.config.cphelper")
   require("user.config.autopairs")
   require("user.config.snips")
+  require("user.config.keymaps")
   return nil
 end
 return {setup = setup}

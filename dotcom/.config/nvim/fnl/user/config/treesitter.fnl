@@ -1,8 +1,7 @@
 (local {: autoload} (require :nfnl.module))
 (local configs (autoload :nvim-treesitter.configs))
 
-(local ensure-installed [:c
-                         :cpp
+(local ensure-installed [:cpp
                          :clojure
                          :lua
                          :norg
@@ -10,8 +9,7 @@
                          :typescript
                          :vimdoc
                          :vim
-                         :fennel
-                         :norg])
+                         :fennel])
 
 (local textobject-keymaps {:aa "@parameter.outer"
                            :ia "@parameter.inner"

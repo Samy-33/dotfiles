@@ -14,20 +14,14 @@
                                                  :<Tab> (cmp.mapping (fn [fallback]
                                                                        (if (cmp.visible)
                                                                            (cmp.select_next_item)
-
                                                                            (luasnip.expand_or_jumpable)
                                                                            (luasnip.expand_or_jump)
-
                                                                            (fallback))))
                                                  :<S-Tab> (cmp.mapping (fn [fallback]
                                                                          (if (cmp.visible)
                                                                              (cmp.select_prev_item)
-
                                                                              (luasnip.jumpable -1)
                                                                              (luasnip.jump -1)
-
                                                                              (fallback))))}
                                                 [:i :s])
-            :sources [{:name :conjure}
-                      {:name :nvim_lsp}
-                      {:name :luasnip}]})
+            :sources [{:name :conjure} {:name :nvim_lsp} {:name :luasnip}]})

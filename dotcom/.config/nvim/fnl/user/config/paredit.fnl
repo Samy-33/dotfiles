@@ -3,7 +3,8 @@
 (local paredit-fnl (autoload :nvim-paredit-fennel))
 
 (fn setup []
-  (paredit.setup {:indent {:enabled true}}) ;; :indentor vim.lsp.buf.format is better but it reindents whole buffer.
+  ;; :indentor vim.lsp.buf.format is better but it reindents whole buffer.
+  (paredit.setup {:indent {:enabled true}})
   (paredit-fnl.setup))
 
 (setup)

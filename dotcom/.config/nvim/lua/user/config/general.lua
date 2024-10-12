@@ -29,4 +29,5 @@ local function _2_()
   return nil
 end
 vim.api.nvim_create_autocmd("BufEnter", {callback = _2_, pattern = "*.cljd"})
+vim.filetype.add({extension = {ebnf = "ebnf"}})
 return {}
