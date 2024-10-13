@@ -85,20 +85,7 @@
         :clojure-vim/vim-jack-in
         :radenling/vim-dispatch-neovim
         :tpope/vim-surround
-        {1 :julienvincent/nvim-paredit
-         :config (fn []
-                   (let [paredit (require :nvim-paredit)]
-                     (paredit.setup {:indent {:enabled true}})))}
-        {1 :julienvincent/nvim-paredit-fennel
-         :dependencies [:julienvincent/nvim-paredit]
-         :ft [:fennel]
-         :config (fn []
-                   (let [fnl-paredit (require :nvim-paredit-fennel)]
-                     (fnl-paredit.setup)))}
-        ; {1 :guns/vim-sexp
-        ;  :config (fn [] (set vim.g.sexp_filetypes
-        ;                      (.. vim.g.sexp_filetypes ",fennel")))}
-        ; :tpope/vim-sexp-mappings-for-regular-people
+        {1 :julienvincent/nvim-paredit}
         :HiPhish/rainbow-delimiters.nvim
         ; For making notes
         :lervag/wiki.vim
