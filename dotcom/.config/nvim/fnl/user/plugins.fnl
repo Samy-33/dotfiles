@@ -10,19 +10,11 @@
         :tpope/vim-repeat
         ; Detect tabstop and shiftwidth automatically
         :tpope/vim-sleuth
-        ; NOTE: This is where your plugins related to LSP can be installed.
-        ; The configuration is done below. Search for lspconfig to find it below.
         ; :nvim-java/nvim-java
         {1 :L3MON4D3/LuaSnip :version :v2.3.0}
         {1 :neovim/nvim-lspconfig
          :dependencies [{1 :williamboman/mason.nvim :config true}
                         :williamboman/mason-lspconfig.nvim
-                        ; {1 :echasnovski/mini.nvim
-                        ;  :version false
-                        ;  :config (fn []
-                        ;            (let [mnotify (require :mini.notify)]
-                        ;              (mnotify.setup {:lsp_progress {:enable true
-                        ;                                             :duration_last 2000}})))}
                         {1 :j-hui/fidget.nvim :opts {} :branch :main}
                         :folke/neodev.nvim]}
         {1 :nvimtools/none-ls.nvim}
@@ -64,8 +56,7 @@
         {1 :nvim-telescope/telescope.nvim
          :version "*"
          :dependencies [:nvim-lua/plenary.nvim
-                        {1 :nvim-telescope/telescope-live-grep-args.nvim
-                         :version :^1.0.0}]}
+                        {1 :nvim-telescope/telescope-live-grep-args.nvim}]}
         ; Fuzzy Finder Algorithm which requires local dependencies to be built.
         ; Only load if `make` is available. Make sure you have the system
         ; requirements installed.
@@ -85,10 +76,8 @@
         :clojure-vim/vim-jack-in
         :radenling/vim-dispatch-neovim
         :tpope/vim-surround
-        {1 :julienvincent/nvim-paredit}
+        {1 :julienvincent/nvim-paredit :branch :master}
         :HiPhish/rainbow-delimiters.nvim
-        ; For making notes
-        :lervag/wiki.vim
         {1 :vhyrro/luarocks.nvim :priority 1000 :config true}
         {1 :Pocco81/true-zen.nvim :config true}
         {1 :nvim-neorg/neorg :dependencies [:luarocks.nvim]}
@@ -98,14 +87,10 @@
         {1 :windwp/nvim-autopairs
          :event :InsertEnter
          :opts {:enable_check_bracket_line false}}
-        {1 :nmac427/guess-indent.nvim
-         :config (fn []
-                   ((. (require :guess-indent) :setup)))}
-        {1 :aspeddro/pandoc.nvim
-         :config (fn []
-                   (let [pandoc (require :pandoc)]
-                     (pandoc.setup)))}
+        {1 :nmac427/guess-indent.nvim :config true}
+        {1 :aspeddro/pandoc.nvim :config true}
         {1 "https://git.sr.ht/~p00f/cphelper.nvim"
+         :ft :cpp
          :dependencies [:nvim-lua/plenary.nvim]}])
 
 (fn setup []
