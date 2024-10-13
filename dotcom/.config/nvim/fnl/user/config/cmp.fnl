@@ -24,4 +24,8 @@
                                                                              (luasnip.jump -1)
                                                                              (fallback))))}
                                                 [:i :s])
-            :sources [{:name :conjure} {:name :nvim_lsp} {:name :luasnip}]})
+            :sources [{:name :nvim_lsp}
+                      {:name :conjure}
+                      {:name :luasnip}
+                      {:name :path}
+                      {:name :buffer}]})

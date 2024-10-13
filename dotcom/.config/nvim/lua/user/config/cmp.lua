@@ -25,4 +25,4 @@ local function _5_(fallback)
     return fallback()
   end
 end
-return cmp.setup({snippet = {expand = _2_}, mapping = cmp.mapping.preset.insert({["<C-d>"] = cmp.mapping.scroll_docs(-4), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.complete({}), ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false}), ["<Tab>"] = cmp.mapping(_3_), ["<S-Tab>"] = cmp.mapping(_5_)}, {"i", "s"}), sources = {{name = "conjure"}, {name = "nvim_lsp"}, {name = "luasnip"}}})
+return cmp.setup({snippet = {expand = _2_}, mapping = cmp.mapping.preset.insert({["<C-d>"] = cmp.mapping.scroll_docs(-4), ["<C-f>"] = cmp.mapping.scroll_docs(4), ["<C-Space>"] = cmp.mapping.complete({}), ["<CR>"] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = false}), ["<Tab>"] = cmp.mapping(_3_), ["<S-Tab>"] = cmp.mapping(_5_)}, {"i", "s"}), sources = {{name = "nvim_lsp"}, {name = "conjure"}, {name = "luasnip"}, {name = "path"}, {name = "buffer"}}})
