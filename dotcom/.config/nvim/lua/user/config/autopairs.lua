@@ -6,4 +6,6 @@ local first = _local_2_["first"]
 local auto_pairs = autoload("nvim-autopairs")
 local quote_rules = first(auto_pairs.get_rules("'"))
 quote_rules.not_filetypes = {"clojure", "fennel"}
+local quote_rules0 = first(auto_pairs.get_rules("`"))
+quote_rules0.not_filetypes = {"clojure", "fennel"}
 return {}

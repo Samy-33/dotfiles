@@ -39,7 +39,7 @@
     (nvxmap :<leader>fmt vim.lsp.buf.format
             "[F]or[m]a[t] the current buffer or range")))
 
-(local servers
+(local server-config
        {:clojure_lsp {:paths-ignore-regex :conjure-log-*.cljc}
         :ts_ls {}
         ; :jdtls {}
@@ -55,14 +55,14 @@
 (local capabilities
        (cmp-nvim-lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
 
-(mason-lspconfig.setup {:ensure_installed (nfnl-c.keys servers)})
+(mason-lspconfig.setup {:ensure_installed (nfnl-c.keys server-config)})
 
 (mason-lspconfig.setup_handlers [(fn [server-name]
-                                   ((. (. lspconfig server-name) :setup) {: capabilities
-                                                                          :on_attach on-attach
-                                                                          :settings (. servers
-                                                                                       server-name)
-                                                                          :before_init (fn [params
-                                                                                            _]
-                                                                                         (set params.workDoneToken
-                                                                                              :work-done-token))}))])
+                                   (let [server (. lspconfig server-name)]
+                                     (server.setup {: capabilities
+                                                    :on_attach on-attach
+                                                    :settings (. server-config
+                                                                 server-name)
+                                                    :before_init (fn [params _]
+                                                                   (set params.workDoneToken
+                                                                        :work-done-token))})))])

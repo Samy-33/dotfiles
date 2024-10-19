@@ -5,4 +5,7 @@
 (local quote-rules (first (auto-pairs.get_rules "'")))
 (set quote-rules.not_filetypes [:clojure :fennel])
 
+(local quote-rules (first (auto-pairs.get_rules "`")))
+(set quote-rules.not_filetypes [:clojure :fennel])
+
 {}
