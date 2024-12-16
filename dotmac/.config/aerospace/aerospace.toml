@@ -1,17 +1,5 @@
 # Reference: https://github.com/i3/i3/blob/next/etc/config
 
-exec-on-workspace-change = [
-  '/bin/bash',
-  '-c',
-  'sketchybar --trigger aerospace_workspace_changed FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
-
-on-focus-changed = [
-  'move-mouse window-lazy-center',
-  'exec-and-forget /bin/bash -c /opt/homebrew/bin/sketchybar --trigger front_app_switched',
-  'exec-and-forget sketchybar --trigger update_windows'
-]
-
 enable-normalization-flatten-containers = false
 enable-normalization-opposite-orientation-for-nested-containers = false
 
@@ -29,8 +17,7 @@ inner.vertical =   10
 outer.left =       13
 outer.right =      13
 outer.bottom =     10
-#outer.top =        50
-outer.top =        [{monitor.'^built-in retina display$' = 20 }, 52]
+outer.top =        [{monitor.'^built-in retina display$' = 20 }, 10]
 
 [mode.main.binding]
 alt-enter = 'exec-and-forget kitty'

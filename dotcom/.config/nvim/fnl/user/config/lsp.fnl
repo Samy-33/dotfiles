@@ -19,7 +19,7 @@
     (nmap :gd vim.lsp.buf.definition "[G]oto [D]efinition")
     (nmap :gr (fn [] (ts-builtin.lsp_references {:fname_width 60}))
           "[G]oto [R]eferences")
-    (nmap :gI vim.lsp.buf.implementation "[G]oto [I]mplementation")
+    (nmap :gI ts-builtin.lsp_implementations "[G]oto [I]mplementation")
     (nmap :<leader>D vim.lsp.buf.type_definition "Type [D]efinition")
     (nmap :<leader>ds ts-builtin.lsp_document_symbols "[D]ocument [S]ymbols")
     (nmap :<leader>ws
@@ -40,7 +40,7 @@
             "[F]or[m]a[t] the current buffer or range")))
 
 (local server-config
-       {:clojure_lsp {:paths-ignore-regex :conjure-log-*.cljc}
+       {:clojure_lsp {}
         :ts_ls {}
         ; :jdtls {}
         :lua_ls {:Lua {:workspace {:checkThirdParty false}

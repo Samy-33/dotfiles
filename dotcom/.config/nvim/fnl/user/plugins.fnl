@@ -46,10 +46,10 @@
                           :section_separators ""}
                 :sections {:lualine_c [{1 :filename :file_status true :path 1}]}}}
         ; Add indentation guides even on blank lines
-        {1 :lukas-reineke/indent-blankline.nvim
-         ; See `:help indent_blankline.txt`
-         :opts {:scope {:show_start false :show_end false}}
-         :main :ibl}
+        ; {1 :lukas-reineke/indent-blankline.nvim
+        ;  ; See `:help indent_blankline.txt`
+        ;  :opts {:scope {:enabled false}}
+        ;  :main :ibl}
         ; "gc" to comment visual regions/lines
         {1 :numToStr/Comment.nvim :opts {}}
         ; Fuzzy Finder (files, lsp, etc)

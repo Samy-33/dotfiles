@@ -16,6 +16,7 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.backupcopy = "yes"
+vim.o.scrolloff = 5
 local function setup_yank_highlight()
   local yank_augroup = vim.api.nvim_create_augroup("YankHighlight", {clear = true})
   local function _1_()

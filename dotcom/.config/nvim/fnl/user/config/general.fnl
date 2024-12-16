@@ -19,6 +19,7 @@
 (set vim.o.termguicolors true)
 (set vim.o.cursorline true)
 (set vim.o.backupcopy :yes)
+(set vim.o.scrolloff 5)
 
 ; (vim.lsp.set_log_level :DEBUG)
 

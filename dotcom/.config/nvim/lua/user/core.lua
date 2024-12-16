@@ -21,6 +21,7 @@ local function setup()
   require("user.config.autopairs")
   require("user.config.snips")
   require("user.config.keymaps")
+  require("user.config.lualine")
   return nil
 end
 return {setup = setup}
