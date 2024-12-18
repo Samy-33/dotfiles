@@ -22,3 +22,5 @@
     (set vim.o.colorcolumn new-val)))
 
 (vim.keymap.set :n :<leader>vocc toggle-color-column {:silent true})
+
+(vim.keymap.set :n :- (fn [] (vim.cmd "Oil")) {:silent true})

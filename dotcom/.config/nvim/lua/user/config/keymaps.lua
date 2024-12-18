@@ -25,4 +25,8 @@ local function toggle_color_column()
   vim.o.colorcolumn = new_val
   return nil
 end
-return vim.keymap.set("n", "<leader>vocc", toggle_color_column, {silent = true})
+vim.keymap.set("n", "<leader>vocc", toggle_color_column, {silent = true})
+local function _5_()
+  return vim.cmd("Oil")
+end
+return vim.keymap.set("n", "-", _5_, {silent = true})

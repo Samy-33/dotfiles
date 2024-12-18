@@ -7,6 +7,13 @@
 
 (local plugins-to-install
        [{1 :Olical/nfnl :ft :fennel}
+        ; Exploring filesystem pragmatically
+        ; :justinmk/vim-dirvish
+        {1 :stevearc/oil.nvim
+         :dependencies [:nvim-tree/nvim-web-devicons]
+         :config (fn []
+                   (let [oil (require :oil)]
+                     (oil.setup)))}
         :tpope/vim-repeat
         ; Detect tabstop and shiftwidth automatically
         :tpope/vim-sleuth
@@ -81,8 +88,6 @@
         {1 :vhyrro/luarocks.nvim :priority 1000 :config true}
         {1 :Pocco81/true-zen.nvim :config true}
         {1 :nvim-neorg/neorg :dependencies [:luarocks.nvim]}
-        ; Exploring filesystem pragmatically
-        :justinmk/vim-dirvish
         ; autopairs
         {1 :windwp/nvim-autopairs
          :event :InsertEnter
