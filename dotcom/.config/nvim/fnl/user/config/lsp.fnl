@@ -40,7 +40,7 @@
             "[F]or[m]a[t] the current buffer or range")))
 
 (local server-config
-       {;:clojure_lsp {}
+       {:clojure_lsp {}
         :ts_ls {}
         ; :jdtls {}
         :lua_ls {:Lua {:workspace {:checkThirdParty false}
@@ -66,9 +66,3 @@
                                                     :before_init (fn [params _]
                                                                    (set params.workDoneToken
                                                                         :work-done-token))})))])
-
-(lspconfig.clojure_lsp.setup {: capabilities
-                              :on_attach on-attach
-                              :before_init (fn [params _]
-                                             (set params.workDoneToken
-                                                  :work-done-token))})
