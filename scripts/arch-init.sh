@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-stow --target=$HOME dotcom
-stow --target=$HOME dotarch
+stow --restow --target=$HOME dotcom
+stow --restow --target=$HOME dotarch
 
 # Removes the stowed symlinks
 stow_clean () {
