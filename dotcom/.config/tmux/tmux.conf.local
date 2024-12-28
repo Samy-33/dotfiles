@@ -1,0 +1,2 @@
+bind -T copy-mode-vi y send -X copy-selection
+bind -T copy-mode-vi q send -X clear-selection

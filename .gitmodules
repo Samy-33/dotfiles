@@ -1,0 +1,4 @@
+[submodule "deps/tmux-conf"]
+	path = deps/tmux-conf
+	url = git@github.com:gpakosz/.tmux.git
+	branch = master
