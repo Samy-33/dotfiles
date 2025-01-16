@@ -20,7 +20,8 @@ outer.bottom =     10
 outer.top =        [{monitor.'^built-in retina display$' = 20 }, 10]
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget kitty'
+alt-enter = 'exec-and-forget open -a /Applications/Ghostty.app'
+alt-d = 'exec-and-forget open -a Raycast'
 
 alt-h = 'focus left'
 alt-j = 'focus down'
