@@ -1,6 +1,6 @@
--- [nfnl] Compiled from fnl/user/config/lsp.fnl by https://github.com/Olical/nfnl, do not edit.
+-- [nfnl] fnl/user/config/lsp.fnl
 local _local_1_ = require("nfnl.module")
-local autoload = _local_1_["autoload"]
+local autoload = _local_1_.autoload
 local nfnl_c = autoload("nfnl.core")
 local ts_builtin = autoload("telescope.builtin")
 local cmp_nvim_lsp = autoload("cmp_nvim_lsp")
@@ -47,12 +47,14 @@ local server_config = {clojure_lsp = {}, ts_ls = {}, lua_ls = {Lua = {workspace 
 neodev.setup()
 local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 mason_lspconfig.setup({ensure_installed = nfnl_c.keys(server_config)})
-local function _7_(server_name)
-  local server = lspconfig[server_name]
-  local function _8_(params, _)
+for server_name, config in pairs(server_config) do
+  local opts
+  local function _7_(params, _)
     params.workDoneToken = "work-done-token"
     return nil
   end
-  return server.setup({capabilities = capabilities, on_attach = on_attach, settings = server_config[server_name], before_init = _8_})
+  opts = {capabilities = capabilities, on_attach = on_attach, settings = config, before_init = _7_}
+  vim.lsp.config(server_name, opts)
+  vim.lsp.enable(server_name)
 end
-return mason_lspconfig.setup_handlers({_7_})
+return nil

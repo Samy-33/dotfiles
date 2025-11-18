@@ -57,12 +57,23 @@
 
 (mason-lspconfig.setup {:ensure_installed (nfnl-c.keys server-config)})
 
-(mason-lspconfig.setup_handlers [(fn [server-name]
-                                   (let [server (. lspconfig server-name)]
-                                     (server.setup {: capabilities
-                                                    :on_attach on-attach
-                                                    :settings (. server-config
-                                                                 server-name)
-                                                    :before_init (fn [params _]
-                                                                   (set params.workDoneToken
-                                                                        :work-done-token))})))])
+(each [server-name config (pairs server-config)]
+  (let [opts {:capabilities capabilities
+              :on_attach on-attach
+              :settings config
+              :before_init (fn [params _]
+                             (set params.workDoneToken :work-done-token))}]
+    ;; 1. Register configuration (merges with nvim-lspconfig defaults)
+    (vim.lsp.config server-name opts)
+    ;; 2. Enable the server (creates filetype autocommands)
+    (vim.lsp.enable server-name)))
+
+; (mason-lspconfig.setup_handlers [(fn [server-name]
+;                                    (let [server (. lspconfig server-name)]
+;                                      (server.setup {: capabilities
+;                                                     :on_attach on-attach
+;                                                     :settings (. server-config
+;                                                                  server-name)
+;                                                     :before_init (fn [params _]
+;                                                                    (set params.workDoneToken
+;                                                                         :work-done-token))})))])
