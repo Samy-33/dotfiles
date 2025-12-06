@@ -11,7 +11,11 @@ font pango:ShureTechMono Nerd Font 9
 # autostart
 # exec --no-startup-id nitrogen --restore
 # exec --no-startup-id xrandr --output HDMI-1 --auto --right-of DP-1
-exec --no-startup-id polybar main
+# exec --no-startup-id polybar main
+bar {
+  status_command i3status
+}
+
 exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/night-sky.jpg
 # exec --no-startup-id picom
 exec --no-startup-id dunst -config "/home/$USER/.config/dunst/dunstrc"

@@ -7,6 +7,7 @@
                                                     :ticombo "~/neorg/ticombo"}
                                        :index :index.norg}}
                 :core.concealer {}
-                :core.export {}})
+                :core.export {}
+                :core.export.markdown {:config {:extensions :all}}})
 
 (neorg.setup {:load modules})
