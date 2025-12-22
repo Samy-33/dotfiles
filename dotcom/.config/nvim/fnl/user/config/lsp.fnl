@@ -40,7 +40,8 @@
             "[F]or[m]a[t] the current buffer or range")))
 
 (local server-config
-       {:clojure_lsp {}
+       {:zls {}
+        :clojure_lsp {}
         :ts_ls {}
         ; :jdtls {}
         :lua_ls {:Lua {:workspace {:checkThirdParty false}
