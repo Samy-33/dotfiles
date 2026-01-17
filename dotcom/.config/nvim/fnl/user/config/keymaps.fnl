@@ -7,10 +7,10 @@
 (vim.keymap.set :n :j "v:count == 0 ? 'gj' : 'j'" {:expr true :silent true})
 
 ;; Tabs
-(vim.keymap.set [:n :v :i :x] :<C-h> #(vim.api.nvim_command :tabprevious)
+(vim.keymap.set [:n :v :i :x :t] :<C-h> #(vim.api.nvim_command :tabprevious)
                 {:silent true})
 
-(vim.keymap.set [:n :v :i :x] :<C-l> #(vim.api.nvim_command :tabnext)
+(vim.keymap.set [:n :v :i :x :t] :<C-l> #(vim.api.nvim_command :tabnext)
                 {:silent true})
 
 (vim.keymap.set [:n :v :i :x] :<C-n> #(vim.api.nvim_command :tabnew)
