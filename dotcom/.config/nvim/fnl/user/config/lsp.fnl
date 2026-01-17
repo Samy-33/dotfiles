@@ -3,7 +3,6 @@
 (local ts-builtin (autoload :telescope.builtin))
 (local cmp-nvim-lsp (autoload :cmp_nvim_lsp))
 (local mason-lspconfig (autoload :mason-lspconfig))
-(local lspconfig (autoload :lspconfig))
 (local neodev (autoload :neodev))
 ; (local java (autoload :java))
 
@@ -40,12 +39,14 @@
             "[F]or[m]a[t] the current buffer or range")))
 
 (local server-config
-       {:zls {}
+       {:clangd {}
+        :zls {}
         :clojure_lsp {}
         :ts_ls {}
         ; :jdtls {}
         :lua_ls {:Lua {:workspace {:checkThirdParty false}
                        :telemetry {:enable false}}}
+        :emmet_language_server {}
         :fennel_language_server {:fennel {:diagnostics {:globals [:vim]}
                                           :workspace {:library (vim.api.nvim_list_runtime_paths)}}}})
 

@@ -7,6 +7,7 @@ export JANK_SRC=/home/saket/Documents/oss/jank
 export EDITOR=nvim
 
 export PATH="$HOME/development/flutter/bin:$HOME/Android/Sdk/platform-tools/adb:$HOME/bin:$PATH"
+export PATH=$PATH:/home/saket/.local/bin
 
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 

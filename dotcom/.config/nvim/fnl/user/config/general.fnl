@@ -5,7 +5,7 @@
 
 (set vim.o.mouse "")
 
-(set vim.o.clipboard :unnamedplus)
+(set vim.opt.clipboard :unnamedplus)
 
 (set vim.o.breakindent true)
 (set vim.o.undofile true)

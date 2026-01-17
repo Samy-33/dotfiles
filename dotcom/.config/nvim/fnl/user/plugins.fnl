@@ -96,7 +96,14 @@
         {1 :aspeddro/pandoc.nvim :config true}
         {1 "https://git.sr.ht/~p00f/cphelper.nvim"
          :ft :cpp
-         :dependencies [:nvim-lua/plenary.nvim]}])
+         :dependencies [:nvim-lua/plenary.nvim]}
+        {1 :epwalsh/obsidian.nvim
+         :version :*
+         :lazy true
+         :ft :markdown
+         :dependencies ["nvim-lua/plenary.nvim"]
+         :opts {:workspaces [{:name "Personal notes"
+                              :path "~/Documents/notes/Personal"}]}}])
 
 (fn setup []
   (when (not lazy-installed?)
